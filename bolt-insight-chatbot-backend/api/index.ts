@@ -7,6 +7,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import userRoute from "../user/user.route";
 import chatbotRoute from "../chatbot/chatbot.route";
+import { authenticateToken } from "../middleware/authenticationMiddleware";
 
 // Initialize the Express application
 const app: Application = express();
@@ -31,8 +32,7 @@ const options = {
         info: {
             title: "bolt-insight-chatbot-backend",
             version: "1.0.0",
-            description:
-                "Express.js and MongoDb Backend API",
+            description: "Express.js and MongoDb Backend API",
             license: {
                 name: "MIT",
                 url: "https://spdx.org/licenses/MIT.html",
@@ -48,7 +48,7 @@ const options = {
             },
         ],
     },
-    apis: ["./chatbot/*.ts", "./user/*.ts",],
+    apis: ["./chatbot/*.ts", "./user/*.ts"],
 };
 
 const specs = swaggerJsdoc(options);
@@ -69,11 +69,14 @@ mongoose.connect(mongoUri).then(() => {
     console.error('MongoDB connection error:', error);
 });
 
+// Apply JWT authentication middleware globally, this will apply to all routes below
+app.use(authenticateToken);
+
 // Routes
-app.use('/api/user', userRoute)
+app.use('/api/user', userRoute);
 app.use("/api/chatbot", chatbotRoute);
 
-app.use('/api/chatbot/healthCheck', (req, res) => {
+app.use('/api/healthCheck', (req, res) => {
     res.status(200).json({ message: 'Server is running!' });
 });
 app.use('*', (req, res) => {

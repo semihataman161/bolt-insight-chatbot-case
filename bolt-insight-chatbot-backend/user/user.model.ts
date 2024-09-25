@@ -8,21 +8,16 @@ import mongoose, { Schema, Document } from 'mongoose';
  *       type: object
  *       required:
  *        - userName
- *        - email
  *        - password
  *       properties:
  *         userName:
  *           type: string
  *           description: The user name
- *         email:
- *           type: string
- *           description: The user email
  *         password:
  *           type: string
  *           description: The user password
  *       example:
  *         userName: 'semihataman'
- *         email: 'semihataman16@gmail.com'
  *         password: '2a$10$9MJmPugtiDDfq5F/XdnpJeYtGYyxquopaghX1uzyTFLMCfoDFbj3s'
  */
 
@@ -62,12 +57,12 @@ import mongoose, { Schema, Document } from 'mongoose';
  *         application/json:
  *           schema:
  *             properties:
- *               email: 
+ *               userName: 
  *                 type: string
  *               password:
  *                 type: string
  *           example:
- *             email: semihataman16@gmail.com
+ *             userName: semihataman16
  *             password: '1234'
  *     responses:
  *       200:
@@ -83,7 +78,6 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IUser extends Document {
     _id: mongoose.Types.ObjectId;
     userName: string;
-    email: string;
     password: string;
 }
 
@@ -92,11 +86,6 @@ const UserSchema: Schema = new Schema(
         userName: {
             type: String,
             required: true,
-        },
-        email: {
-            type: String,
-            required: true,
-            unique: true,
         },
         password: {
             type: String,
