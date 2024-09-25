@@ -6,7 +6,7 @@ const errorResponder = (error: any, req: Request, res: Response, next: NextFunct
   const { message, options } = error;
   let status = INTERNAL_SERVER_ERROR;
 
-  if (options && options.hasOwnProperty('statusCode')) {
+  if (options?.hasOwnProperty('statusCode')) {
     status = options.statusCode;
   }
 

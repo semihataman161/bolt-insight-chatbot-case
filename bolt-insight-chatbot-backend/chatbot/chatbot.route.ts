@@ -3,7 +3,6 @@ import { startSession, getNextQuestion, submitAnswer } from "../chatbot/chatbot.
 
 const router = Router();
 
-
 router.post("/session/start", startSession);
 router.get("/question/:sessionId", getNextQuestion);
 router.post("/answer", submitAnswer);
