@@ -1,15 +1,14 @@
-import React from 'react';
-import Chatbot from './components/Chatbot';
+import Router from '@/router';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const App: React.FC = () => {
+function App() {
   return (
-    <div>
+    <>
       <ToastContainer />
-      <Chatbot />
-    </div>
-  );
-};
+      <Router />
+    </>
+  )
+}
 
 export default App;
