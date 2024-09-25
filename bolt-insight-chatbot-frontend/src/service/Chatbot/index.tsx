@@ -1,17 +1,18 @@
 import Api from "@/service/Api";
 import { apiUrl } from "@/constants";
 
-export async function startSession() {
+export async function startChatSession(userId: string) {
     const response = await Api({
         method: "POST",
-        url: `${apiUrl}/api/user/login`,
+        url: `${apiUrl}/session/start`,
+        data: { userId }
     });
     return response;
 };
 
 export async function getNextQuestion(sessionId: string) {
     const response = await Api({
-        method: "POST",
+        method: "GET",
         url: `${apiUrl}/question/${sessionId}`,
     });
 

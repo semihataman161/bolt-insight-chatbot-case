@@ -1,11 +1,11 @@
-import React from "react";
-import Chatbot from "@/components/Chatbot";
+import React from 'react';
+import Chatbot from './components/Chatbot';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div>
       <ToastContainer />
       <Chatbot />
     </div>
