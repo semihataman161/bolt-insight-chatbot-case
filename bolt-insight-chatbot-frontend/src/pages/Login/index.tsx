@@ -3,7 +3,6 @@ import { TextField, Button, Typography, Grid2 } from "@mui/material";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "@/service/User";
-import { toast } from "react-toastify";
 
 interface IFormValues {
   userName: string;
