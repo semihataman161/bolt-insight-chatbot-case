@@ -177,6 +177,8 @@ const Chatbot: React.FC = () => {
           onChange={(e) => setAnswer(e.target.value)}
           placeholder="Type your answer..."
           required
+          multiline
+         
           sx={{ marginBottom: 1 }}
         />
         <Button
