@@ -1,1 +1,1 @@
-export const apiUrl = 'http://localhost:8081';
+export const apiUrl = window.location.hostname.includes('localhost') ? 'http://localhost:8081' : 'https://bolt-insight-chatbot-case.onrender.com';
