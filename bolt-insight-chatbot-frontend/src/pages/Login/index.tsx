@@ -24,10 +24,9 @@ export default function Login() {
     const response = await login(values);
 
     if (response.status === 200) {
-      const { token, message } = response.data;
+      const { token } = response.data;
 
       localStorage.setItem("token", token);
-      toast.success(message);
       navigate("/main-page");
     }
   };

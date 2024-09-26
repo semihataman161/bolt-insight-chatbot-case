@@ -10,10 +10,10 @@ export async function startChatSession(userId: string) {
   return response;
 }
 
-export async function getNextQuestion(sessionId: string) {
+export async function getSessionById(sessionId: string) {
   const response = await Api({
     method: "GET",
-    url: `${apiUrl}/api/chatbot/question/${sessionId}`,
+    url: `${apiUrl}/api/chatbot/session/${sessionId}`,
   });
 
   return response;

@@ -28,17 +28,19 @@ const errorInterceptor = (error: any) => {
       toast.error("Bad request: " + error.response.data.message);
       break;
     case 401: // authentication error
+      toast.error(
+        "Unauthorized authentication: " + error.response.data.message
+      );
+
       if (window.location.pathname !== "/login") {
-        toast.error(
-          "Unauthorized authentication: " + error.response.data.message
-        );
         // Redirect to login page
         window.location.href = "/login";
       }
       break;
     case 403: // forbidden
+      toast.error("Forbidden: " + error.response.data.message);
+      
       if (window.location.pathname !== "/login") {
-        toast.error("Forbidden: " + error.response.data.message);
         // Redirect to login page
         window.location.href = "/login";
       }
