@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const HomeRoute = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        navigate('/login');
-    }, [navigate]);
+  useEffect(() => {
+    navigate("/login");
+  }, [navigate]);
 
-    return (
-        <></>
-    );
+  return <></>;
 };
 
 export default HomeRoute;
