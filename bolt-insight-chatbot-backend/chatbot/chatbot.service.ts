@@ -13,29 +13,49 @@ const predefinedQuestions: IQuestion[] = [
     { text: "How would you describe the relationship between humans and cats in three words?" }
 ];
 
-export const startNewSession = async (userId: string): Promise<ISession> => {
-    const newSession = new SessionModel({ userId, questions: predefinedQuestions });
+export const startNewSession = async (userId: string): Promise<ISession | null> => {
+    const existingSession = await SessionModel.findOne({ userId });
+
+    if (existingSession) {
+        return existingSession;
+    }
+
+    const newSession = new SessionModel({ userId, questions: [] });
     return newSession.save();
 };
 
-export const getCurrentQuestion = async (sessionId: string): Promise<IQuestion | null> => {
+export const getSessionBySessionId = async (sessionId: string): Promise<ISession | null> => {
     const session = await SessionModel.findById(sessionId);
-    if (!session || session.currentQuestionIndex >= session.questions.length) {
-        return null;
-    }
-    return session.questions[session.currentQuestionIndex];
-};
 
-export const submitUserAnswer = async (sessionId: string, answer: string): Promise<ISession | null> => {
-    const session = await SessionModel.findById(sessionId);
     if (!session) {
         return null;
     }
 
-    session.questions[session.currentQuestionIndex].answer = answer;
+    if (session.currentQuestionIndex >= predefinedQuestions.length) {
+        return session;
+    }
+
+    const nextQuestion = { text: predefinedQuestions[session.currentQuestionIndex].text };
+    session.questions.push(nextQuestion);
+    return session;
+};
+
+export const submitUserAnswer = async (sessionId: string, answer: string): Promise<ISession | null> => {
+    const session = await SessionModel.findById(sessionId);
+
+    if (!session) {
+        return null;
+    }
+
+    if (session.currentQuestionIndex >= predefinedQuestions.length) {
+        return session;
+    }
+
+    session.questions.push({ text: predefinedQuestions[session.currentQuestionIndex].text, answer });
     session.currentQuestionIndex++;
 
-    if (session.currentQuestionIndex >= session.questions.length) {
+    // Check if all questions are answered and end the session
+    if (session.currentQuestionIndex >= predefinedQuestions.length) {
         session.endedAt = new Date();
     }
 
