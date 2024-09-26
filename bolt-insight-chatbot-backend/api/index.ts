@@ -44,7 +44,21 @@ const options = {
         },
         servers: [
             {
-                url: '/',
+                url: '/',  // Adjust the server URL if necessary
+            },
+        ],
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: 'http',
+                    scheme: 'bearer',
+                    bearerFormat: 'JWT',
+                },
+            },
+        },
+        security: [
+            {
+                bearerAuth: [],
             },
         ],
     },

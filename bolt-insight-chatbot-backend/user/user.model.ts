@@ -18,7 +18,7 @@ import mongoose, { Schema, Document } from 'mongoose';
  *           description: The user password
  *       example:
  *         userName: 'semihataman'
- *         password: '2a$10$9MJmPugtiDDfq5F/XdnpJeYtGYyxquopaghX1uzyTFLMCfoDFbj3s'
+ *         password: '1234'
  */
 
 /**
@@ -46,6 +46,7 @@ import mongoose, { Schema, Document } from 'mongoose';
  *               $ref: '#/components/schemas/User'
  *       500:
  *         description: Some server error
+ *     security: []
  * 
  * /api/user/login:
  *   post:
@@ -73,6 +74,7 @@ import mongoose, { Schema, Document } from 'mongoose';
  *               $ref: '#/components/schemas/User'
  *       500:
  *         description: Some server error
+ *     security: []
  */
 
 export interface IUser extends Document {

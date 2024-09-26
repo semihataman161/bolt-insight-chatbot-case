@@ -58,7 +58,7 @@ import mongoose, { Document, Schema } from "mongoose";
  *   name: Sessions
  *   description: The session management API
  *
- * /api/session/start:
+ * /api/chatbot/session/start:
  *   post:
  *     summary: Start a new session for a user
  *     tags: [Sessions]
@@ -83,7 +83,7 @@ import mongoose, { Document, Schema } from "mongoose";
  *       500:
  *         description: Some server error
  *
- * /api/session/{sessionId}:
+ * /api/chatbot/session/{sessionId}:
  *   get:
  *     summary: Retrieve a session by its ID
  *     tags: [Sessions]
@@ -106,7 +106,7 @@ import mongoose, { Document, Schema } from "mongoose";
  *       500:
  *         description: Some server error
  *
- * /api/answer:
+ * /api/chatbot/answer:
  *   post:
  *     summary: Submit an answer to the current session question
  *     tags: [Sessions]
