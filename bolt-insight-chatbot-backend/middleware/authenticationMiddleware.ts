@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { IUser } from '../user/user.model';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET ?? 'your_jwt_secret_key';
 
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     // Allow these paths without authentication
